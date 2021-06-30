@@ -1,0 +1,5 @@
+"","term","estimate","estimate_sc","statistic","p.value"
+"1","(Intercept)","-2.6 ± 0.1","0 ± 0",-29.1,"< 0.001"
+"2","ejerciciosobligatorios_media","3.3 ± 0.1","0.3 ± 0",28.8,"< 0.001"
+"3","ejercicioslibres_n_cat1_poco","0.2 ± 0","0.2 ± 0",5.7,"< 0.001"
+"4","ejercicioslibres_n_cat2_mucho","0.6 ± 0","0.6 ± 0",20.5,"< 0.001"
