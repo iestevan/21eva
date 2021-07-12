@@ -5,7 +5,7 @@ source ("script-librerias.R")
 ## levanto cuestionarios-----
 
 #directorio
-directorio_ejercicios = "ejercicios"
+directorio_ejercicios  <-  "ejercicios"
 
 #levanto csvs
 listado_ejercicios <- dir(here(directorio_ejercicios), pattern = ".csv") %>%
@@ -21,7 +21,7 @@ ejercicios  <- tibble(filename = listado_ejercicios) %>%
 
 ejercicios <- unnest(ejercicios, cols = c(file_contents))
 
-rm(directorio_ejercicios, listado_examen, i, ejerciciosi)
+rm(directorio_ejercicios, listado_examen)
 
 ## acomodo valores ----
 
@@ -36,6 +36,7 @@ ejercicios  <-  ejercicios %>%
     cuestionario_nota = as.numeric(cuestionario_nota),
     cuestionario_numero = str_extract(filename, "\\d*"),
   ) %>%
+  filter(!is.na(ci)) %>% #filtro los promedios por ejercicio
   select(-filename) %>%
   #pongo NAs
   mutate(across(everything(), na_if, "")) %>%
@@ -56,15 +57,11 @@ ejercicios  <-  ejercicios %>%
   select (-c(tiempo_d:tiempo_s))
 
 #agrego ci que no están
-ejercicios  <-  ejercicios %>%
-  mutate(
-    ci = replace(ci, apellido == "Pascualetti Alvez", "4640167"),
-    ci = replace(ci, apellido == "Rodríguez Haretche", "45094925")
-  )
-
-#filtro a los que no tien cedula
-ejercicios  <-  ejercicios %>%
-  filter(!is.na(ci))
+# ejercicios  <-  ejercicios %>%
+#   mutate(
+#     ci = replace(ci, apellido == "Pascualetti Alvez", "4640167"),
+#     ci = replace(ci, apellido == "Rodríguez Haretche", "45094925")
+#   )
 
 ## agrego fecha cierre ----
 ejercicios <- ejercicios %>%

@@ -289,7 +289,7 @@ c <- glm_parcial3 %>%
   geom_linerange (aes(ymin = prob-(1.96)*std.error, ymax = prob+(1.96)*std.error), size = 1)+
   geom_point(aes(color = ejercicioslibres_n_cat), size = 1)+
   geom_point(shape = 1,size = 1,colour = "black")+
-  mitema+
+  mitema()+
   theme_bw()+
   labs (x = "Cantidad de ejercicios\nopcionales", y = "Proporción de correctas\nen el parcial", color = "Cantidad de ejercicios\nopcionales")+
   scale_y_continuous(position="right", limits = c(0,1.05))+
